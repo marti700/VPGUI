@@ -11,15 +11,21 @@ class ConditionsWindow(tk.Frame):
         #The back button
         back_button = tk.Button(self, text="Atras",
                 command = lambda: controller.show_frame(main_window.MainWindow))
-        back_button.pack()
+        back_button.grid(row=0, column=0)
                
+        #Title Label Pane
+
+        tit_label_pane = ttk.PanedWindow(self, orient="horizontal")
+        tit_label_pane.grid(row=1, column=2)
+        
         #the Main label
         label = tk.Label(self, text="Condiciones del Invernadero", font=TITLE_FONT)
-        label.pack()
+
+        tit_label_pane.add(label)
         
         #Temperature information widgets
         temp_range_pane = ttk.PanedWindow(self, orient="vertical")
-        temp_range_pane.pack(fill="both", expand=1)
+        temp_range_pane.grid(row=2, column=1)
 
         trange_label = ttk.Label(self, text="Rango: min-max")
         temperature_label = ttk.Label(self,text="Temperatura: t")
@@ -29,7 +35,7 @@ class ConditionsWindow(tk.Frame):
 
         #Humidity information widgets
         hum_range_pane = ttk.PanedWindow(self, orient="vertical")
-        hum_range_pane.pack(fill="both", expand=1)
+        hum_range_pane.grid(row=2, column=1)
 
         hrange_label = ttk.Label(self, text="Rango: min-max")
         humidity_label = ttk.Label(self,text="Temperatura: t")
@@ -37,10 +43,15 @@ class ConditionsWindow(tk.Frame):
         hum_range_pane.add(hrange_label)
         hum_range_pane.add(humidity_label)
 
+        #######Indicators code goes here#######
+
+
+
+        #######################################
 
         #Riego system information widgets
         rie_info_pane = ttk.PanedWindow(self, orient="vertical")
-        rie_info_pane.pack(fill="both", expand=1)
+        rie_info_pane.grid(row=2, column=3)
 
         rie_sis_label = ttk.Label(self, text="Sistema de Riego:")
         rie_ind_label = ttk.Label(self,text="act/desc")
@@ -50,7 +61,7 @@ class ConditionsWindow(tk.Frame):
 
         #Lights system information widgets
         lights_info_pane = ttk.PanedWindow(self, orient="vertical")
-        lights_info_pane.pack(fill="both", expand=1)
+        lights_info_pane.grid(row=3, column=3)
 
         lights_ind_label = ttk.Label(self, text="Luces: act/desc")
 
@@ -58,7 +69,7 @@ class ConditionsWindow(tk.Frame):
 
         #fans system information widgets
         fan_info_pane = ttk.PanedWindow(self, orient="vertical")
-        fan_info_pane.pack(fill="both", expand=1)
+        fan_info_pane.grid(row=4, column=3)
 
         fan_ind_label = ttk.Label(self, text="Ventiladores: act/desc")
 
@@ -66,7 +77,7 @@ class ConditionsWindow(tk.Frame):
 
         #curtain system information widgets
         cur_info_pane = ttk.PanedWindow(self, orient="vertical")
-        cur_info_pane.pack(fill="both", expand=1)
+        cur_info_pane.grid(row=5, column=3)
 
         cur_ind_label = ttk.Label(self, text="Cortinas: act/desc")
 

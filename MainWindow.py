@@ -11,7 +11,7 @@ class MainWindow(tk.Frame):
         
         #buttons and main lable panes
         buttons_pane = ttk.PanedWindow(self, orient="horizontal")
-        buttons_pane.grid(row=5, column=2)
+        buttons_pane.grid(row=2, column=2)
         
         win_tittle_pane = ttk.PanedWindow(self, orient="horizontal")
         win_tittle_pane.grid(row=1, column=2)
@@ -24,16 +24,12 @@ class MainWindow(tk.Frame):
         #buttons
         conditions_button = ttk.Button(self, text="condiciones",
                 command = lambda: controller.show_frame(conditions_window.ConditionsWindow))
-        conditions_button.grid(row=1, column=2)
         
         settings_button = ttk.Button(self, text="Ajustes")
-        settings_button.grid(row=1, column=4)
 
         graph_button = ttk.Button(self, text="Gráfica de Tendencias")
-        graph_button.grid(row=1, column=6)
 
         alarms_button = ttk.Button(self, text="Pantallas de Alarma")
-        alarms_button.grid(row=1, column= 8)
 
         #add buttons to pane
         buttons_pane.add(conditions_button)
