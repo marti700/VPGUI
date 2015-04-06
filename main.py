@@ -1,6 +1,6 @@
 import tkinter as tk
-from mainWindow import *
-
+import MainWindow as main_window
+import ConditionsWindow as conditions_window
 
 class Main(tk.Tk):
     
@@ -12,14 +12,13 @@ class Main(tk.Tk):
         container.grid_columnconfigure(0, weight=1)
 
         self.frames = {}
-
-        frame = StartPage(container, self)
         
-        self.frames[StartPage] = frame
+        for Fr in (main_window.MainWindow, conditions_window.ConditionsWindow):
+            frame = Fr(container, self)
+            self.frames[Fr] = frame  # adds the frame to self.frames
+            frame.grid(row=0, column=0, sticky="nsew")
 
-        frame.grid(row=0, column=0, sticky="nsew")
-
-        self.show_frame(StartPage)
+        self.show_frame(main_window.MainWindow)
 
     def show_frame(self, cont):
         
