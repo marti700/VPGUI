@@ -26,6 +26,7 @@ class Main(tk.Tk):
         frame.tkraise()
 
 application = Main()
+application.geometry('{}x{}'.format(800, 480))
 application.mainloop()
 
 
