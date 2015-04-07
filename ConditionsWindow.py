@@ -7,7 +7,10 @@ TITLE_FONT = ("ARIAL", 14)
 class ConditionsWindow(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
-        
+        self.height = 100
+        #says if the temp indicator should increase or decrease 
+        #this is usless and this line can be safely deleted if the animation is not needed
+        self.temp_inc_dec = True
         #layout stuff see: http://effbot.org/tkinterbook/grid.htm#Tkinter.Grid.grid_rowconfigure-method
         #and also see: http://effbot.org/tkinterbook/grid.htm#Tkinter.Grid.grid_columnconfigure-method 
         #I had to apply a grid on self (which is the frame) so i can call grid_rowconfigure and grid_columnconfigure
@@ -57,10 +60,10 @@ class ConditionsWindow(tk.Frame):
         temp_indicator_pane = tk.PanedWindow(self, bg="black", orient="vertical")
         temp_indicator_pane.grid(row=2, column=2)
 
-        temp_indicator = tk.Canvas(self, width=30, height=100)
-        temp_indicator.create_rectangle(0,0,150,100, fill="red")
+        self.temp_indicator = tk.Canvas(self, width=30, height=100)
+        #self.temp_indicator.create_rectangle(0, 0,150,100, fill="red", tag ="tempIndicator")
 
-        temp_indicator_pane.add(temp_indicator)
+        temp_indicator_pane.add(self.temp_indicator)
 
         #Humidity Indicator
         hum_indicator_pane = tk.PanedWindow(self, bg="black", orient="vertical")
@@ -122,3 +125,39 @@ class ConditionsWindow(tk.Frame):
         #info_pane.add(fan_info_pane)
         #info_pane.add(cur_info_pane)
 
+        self.animate_temp_indicator()
+    
+    def animate_temp_indicator(self):
+        print(self.height) 
+        rect = self.temp_indicator.create_rectangle(0, self.height,150,100, tag ="tempIndicator")
+        #this line can be deleted this is used just to ilustrate how the indicator widget will behave
+        self.after(1000, self.animate_temp_indicator)
+        
+        #controls indicator increase and decrease 
+        #this is for animation prouporses and may 
+        #not be necesary
+        if self.height == 100 or self.height == 0:
+            if self.temp_inc_dec:
+                print(self.temp_inc_dec)
+                self.temp_inc_dec  = False
+            else:
+                print(self.temp_inc_dec)
+                self.temp_inc_dec  = True
+        
+        if self.temp_inc_dec:
+            self.height += 10
+        else:
+            self.height -= 10
+
+        #controls indicator colors
+        if self.height < 35 and self.height < 70:
+            self.temp_indicator.itemconfig(rect, fill="")
+            self.temp_indicator.itemconfig(rect, fill="red")
+        elif self.height < 71 and self.height < 90:
+            self.temp_indicator.itemconfig(rect, fill="")
+            self.temp_indicator.itemconfig(rect, fill="green")
+        elif self.height < 91 and self.height < 101:
+            self.temp_indicator.itemconfig(rect, fill="")
+            self.temp_indicator.itemconfig(rect, fill="blue")
+        
+        self.temp_indicator.update()

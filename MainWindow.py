@@ -34,7 +34,7 @@ class MainWindow(tk.Frame):
         #image stuff
         logo = tk.PhotoImage(file="batlogo.png")
         label_logo = tk.Label(self, image=logo)
-        label_logo.image = logo
+        label_logo.image = logo #save image reference to prevent garbage collection
         label_logo.grid(row=1, column=2)
 
         #buttons
