@@ -7,7 +7,11 @@ TITLE_FONT = ("ARIAL", 14)
 class ConditionsWindow(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
-       
+        
+        #layout stuff see: http://effbot.org/tkinterbook/grid.htm#Tkinter.Grid.grid_rowconfigure-method
+        #and also see: http://effbot.org/tkinterbook/grid.htm#Tkinter.Grid.grid_columnconfigure-method 
+        #I had to apply a grid on self (which is the frame) so i can call grid_rowconfigure and grid_columnconfigure
+        #because this methods only work in the parent widget that uses a grid to manage the layout`
         self.grid(row=0, column=0, sticky="nsew")
         self.grid_rowconfigure(2, minsize=200)
         self.grid_rowconfigure(3, weight=1)
