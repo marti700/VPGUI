@@ -11,6 +11,7 @@ class ConditionsWindow(tk.Frame):
         #says if the temp indicator should increase or decrease 
         #this is usless and this line can be safely deleted if the animation is not needed
         self.temp_inc_dec = True
+        
         #layout stuff see: http://effbot.org/tkinterbook/grid.htm#Tkinter.Grid.grid_rowconfigure-method
         #and also see: http://effbot.org/tkinterbook/grid.htm#Tkinter.Grid.grid_columnconfigure-method 
         #I had to apply a grid on self (which is the frame) so i can call grid_rowconfigure and grid_columnconfigure
@@ -40,10 +41,10 @@ class ConditionsWindow(tk.Frame):
         temp_range_pane.grid(row=2, column=1)
 
         trange_label = ttk.Label(self, text="Rango: min-max")
-        temperature_label = ttk.Label(self,text="Temperatura: t")
+        self.temperature_label = ttk.Label(self,text="Temperatura: t")
 
         temp_range_pane.add(trange_label)
-        temp_range_pane.add(temperature_label)
+        temp_range_pane.add(self.temperature_label)
 
         #Humidity information widgets
         hum_range_pane = tk.PanedWindow(self, orient="vertical", bg="black")
@@ -129,10 +130,13 @@ class ConditionsWindow(tk.Frame):
     
     def animate_temp_indicator(self):
         print(self.height) 
-        rect = self.temp_indicator.create_rectangle(0, self.height,150,100, tag ="tempIndicator")
+        rect = self.temp_indicator.create_rectangle(0, self.height,150,100, tag ="tempIndicator") #!!!!!
         self.temp_indicator.move("tempIndicator", 0, self.height)
         #this line can be deleted this is used just to ilustrate how the indicator widget will behave
         self.after(300, self.animate_temp_indicator)
+
+        #change label temperature text
+        self.temperature_label.config(text = "Temperatura " + str(self.height) + "°C") #!!!!!!!!!
         
         self.temp_indicator.update()
         #controls indicator increase and decrease 
@@ -152,6 +156,7 @@ class ConditionsWindow(tk.Frame):
             self.height -= 2
 
         #controls indicator colors
+        #!!!!!!!!!!!!!!!!!!!!!!!!
         if self.height in range(0,17):
             self.temp_indicator.itemconfig(rect, fill="red")
         elif self.height in range(17,33):
