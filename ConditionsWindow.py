@@ -7,7 +7,7 @@ TITLE_FONT = ("ARIAL", 14)
 class ConditionsWindow(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
-        self.height = 100
+        self.height = 50
         #says if the temp indicator should increase or decrease 
         #this is usless and this line can be safely deleted if the animation is not needed
         self.temp_inc_dec = True
@@ -130,13 +130,15 @@ class ConditionsWindow(tk.Frame):
     def animate_temp_indicator(self):
         print(self.height) 
         rect = self.temp_indicator.create_rectangle(0, self.height,150,100, tag ="tempIndicator")
+        self.temp_indicator.move("tempIndicator", 0, self.height)
         #this line can be deleted this is used just to ilustrate how the indicator widget will behave
-        self.after(1000, self.animate_temp_indicator)
+        self.after(300, self.animate_temp_indicator)
         
+        self.temp_indicator.update()
         #controls indicator increase and decrease 
         #this is for animation prouporses and may 
         #not be necesary
-        if self.height == 100 or self.height == 0:
+        if self.height == 50 or self.height == 0:
             if self.temp_inc_dec:
                 print(self.temp_inc_dec)
                 self.temp_inc_dec  = False
@@ -145,19 +147,15 @@ class ConditionsWindow(tk.Frame):
                 self.temp_inc_dec  = True
         
         if self.temp_inc_dec:
-            self.height += 10
+            self.height += 2
         else:
-            self.height -= 10
+            self.height -= 2
 
         #controls indicator colors
-        if self.height < 35 and self.height < 70:
-            self.temp_indicator.itemconfig(rect, fill="")
+        if self.height in range(0,17):
             self.temp_indicator.itemconfig(rect, fill="red")
-        elif self.height < 71 and self.height < 90:
-            self.temp_indicator.itemconfig(rect, fill="")
+        elif self.height in range(17,33):
             self.temp_indicator.itemconfig(rect, fill="green")
-        elif self.height < 91 and self.height < 101:
-            self.temp_indicator.itemconfig(rect, fill="")
+        elif self.height in range(33,51):
             self.temp_indicator.itemconfig(rect, fill="blue")
         
-        self.temp_indicator.update()
