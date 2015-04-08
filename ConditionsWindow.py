@@ -7,10 +7,12 @@ TITLE_FONT = ("ARIAL", 14)
 class ConditionsWindow(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
-        self.height = 50
+        self.height = 50 # for Temperature
+        self.Hheight = 50 # for Humidity
         #says if the temp indicator should increase or decrease 
         #this is usless and this line can be safely deleted if the animation is not needed
         self.temp_inc_dec = True
+        self.hum_inc_dec = True
         
         #layout stuff see: http://effbot.org/tkinterbook/grid.htm#Tkinter.Grid.grid_rowconfigure-method
         #and also see: http://effbot.org/tkinterbook/grid.htm#Tkinter.Grid.grid_columnconfigure-method 
@@ -51,10 +53,10 @@ class ConditionsWindow(tk.Frame):
         hum_range_pane.grid(row=3, column=1)
 
         hrange_label = ttk.Label(self, text="Rango: min-max")
-        humidity_label = ttk.Label(self,text="Temperatura: t")
+        self.humidity_label = ttk.Label(self,text="Humedad: h")
 
         hum_range_pane.add(hrange_label)
-        hum_range_pane.add(humidity_label)
+        hum_range_pane.add(self.humidity_label)
 
         #######Indicators code goes here#######
         #Temperature indicator
@@ -70,10 +72,10 @@ class ConditionsWindow(tk.Frame):
         hum_indicator_pane = tk.PanedWindow(self, bg="black", orient="vertical")
         hum_indicator_pane.grid(row=3, column=2,)
 
-        hum_indicator = tk.Canvas(self, width=30, height=100)
-        hum_indicator.create_rectangle(0,0,150,100, fill="red")
+        self.hum_indicator = tk.Canvas(self, width=30, height=100)
+        #hum_indicator.create_rectangle(0,0,150,100, fill="red")
 
-        hum_indicator_pane.add(hum_indicator)
+        hum_indicator_pane.add(self.hum_indicator)
 
         #######################################
         
@@ -126,10 +128,11 @@ class ConditionsWindow(tk.Frame):
         #info_pane.add(fan_info_pane)
         #info_pane.add(cur_info_pane)
 
-        self.animate_temp_indicator()
+        self.animate_temp_indicator() #call animation for Temperature indicator
+        self.animate_hum_indicator()  #call animation for Humidity inidicator
     
     def animate_temp_indicator(self):
-        print(self.height) 
+        print("Temperature: " + str(self.height)) 
         rect = self.temp_indicator.create_rectangle(0, self.height,150,100, tag ="tempIndicator") #!!!!!
         self.temp_indicator.move("tempIndicator", 0, self.height)
         #this line can be deleted this is used just to ilustrate how the indicator widget will behave
@@ -164,3 +167,40 @@ class ConditionsWindow(tk.Frame):
         elif self.height in range(33,51):
             self.temp_indicator.itemconfig(rect, fill="blue")
         
+        
+    def animate_hum_indicator(self):
+        print("Humidity: "+ str(self.Hheight)) 
+        rect = self.hum_indicator.create_rectangle(0, self.Hheight,150,100, tag ="tempIndicator") #!!!!!
+        self.hum_indicator.move("tempIndicator", 0, self.Hheight)
+        #this line can be deleted this is used just to ilustrate how the indicator widget will behave
+        self.after(300, self.animate_hum_indicator)
+
+        #change label temperature text
+        self.humidity_label.config(text = "Humedad " + str(self.Hheight) + "°C") #!!!!!!!!!
+        
+        self.hum_indicator.update()
+        #controls indicator increase and decrease 
+        #this is for animation prouporses and may 
+        #not be necesary
+        if self.Hheight == 50 or self.Hheight == 0:
+            if self.hum_inc_dec:
+                print(self.hum_inc_dec)
+                self.hum_inc_dec  = False
+            else:
+                print(self.hum_inc_dec)
+                self.hum_inc_dec  = True
+        
+        if self.hum_inc_dec:
+            self.Hheight += 2
+        else:
+            self.Hheight -= 2
+
+        #controls indicator colors
+        #!!!!!!!!!!!!!!!!!!!!!!!
+        if self.Hheight in range(0,17):
+            self.hum_indicator.itemconfig(rect, fill="red")
+        elif self.Hheight in range(17,33):
+            self.hum_indicator.itemconfig(rect, fill="green")
+        elif self.Hheight in range(33,51):
+            self.hum_indicator.itemconfig(rect, fill="blue")
+
