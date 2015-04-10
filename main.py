@@ -1,6 +1,7 @@
 import tkinter as tk
 import MainWindow as main_window
 import ConditionsWindow as conditions_window
+import SettingsWindow as settings_window
 
 class Main(tk.Tk):
     
@@ -13,7 +14,7 @@ class Main(tk.Tk):
 
         self.frames = {}
         
-        for Fr in (main_window.MainWindow, conditions_window.ConditionsWindow):
+        for Fr in (main_window.MainWindow, conditions_window.ConditionsWindow, settings_window.SettingsWindow):
             frame = Fr(container, self)
             self.frames[Fr] = frame  # adds the frame to self.frames
             frame.grid(row=0, column=0, sticky="nsew")

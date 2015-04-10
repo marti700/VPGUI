@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 import ConditionsWindow as conditions_window
+import SettingsWindow as settings_window
 
 TITLE_FONT = ("ARIAL", 14)
 
@@ -41,7 +42,8 @@ class MainWindow(tk.Frame):
         conditions_button = ttk.Button(self, text="condiciones",
                 command = lambda: controller.show_frame(conditions_window.ConditionsWindow))
         
-        settings_button = ttk.Button(self, text="Ajustes")
+        settings_button = ttk.Button(self, text="Ajustes",
+                command = lambda: controller.show_frame(settings_window.SettingsWindow))
 
         graph_button = ttk.Button(self, text="Gráfica de Tendencias")
 
