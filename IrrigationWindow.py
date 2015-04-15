@@ -52,10 +52,10 @@ class IrrigationWindow(tk.Frame):
         #tank 2 Label
         tank1_level_label = ttk.Label(self,text="ML")
         #tank 1 Entry
-        tank1_level_entry = ttk.Entry(self)
+        self.tank1_level_entry = ttk.Entry(self)
 
         #add widgets to entry pane
-        tank1_entry_pane.add(tank1_level_entry)
+        tank1_entry_pane.add(self.tank1_level_entry)
         tank1_entry_pane.add(tank1_level_label)
 
         tank1_pane.add(tank1_label)
@@ -73,10 +73,10 @@ class IrrigationWindow(tk.Frame):
         #tank 2 Label
         tank2_level_label = ttk.Label(self,text="ML")
         #tank 2 Entry
-        tank2_level_entry = ttk.Entry(self)
+        self.tank2_level_entry = ttk.Entry(self)
 
         #add widgets to entry pane
-        tank2_entry_pane.add(tank2_level_entry)
+        tank2_entry_pane.add(self.tank2_level_entry)
         tank2_entry_pane.add(tank2_level_label)
 
         
@@ -95,10 +95,10 @@ class IrrigationWindow(tk.Frame):
         #tank 2 Label
         tank3_level_label = ttk.Label(self,text="ML")
         #tank 3 Entry
-        tank3_level_entry = ttk.Entry(self)
+        self.tank3_level_entry = ttk.Entry(self)
 
         #add widgets to entry pane
-        tank3_entry_pane.add(tank3_level_entry)
+        tank3_entry_pane.add(self.tank3_level_entry)
         tank3_entry_pane.add(tank3_level_label)
 
         
@@ -117,15 +117,15 @@ class IrrigationWindow(tk.Frame):
         start_timer_label = ttk.Label(self, text="Inicio")
 
         #start timer entries
-        start_timer_hours_entry = ttk.Entry(self, width=10)
-        start_timer_minutes_entry = ttk.Entry(self, width=10)
-        start_timer_seconds_entry = ttk.Entry(self, width=10)
+        self.start_timer_hours_entry = ttk.Entry(self, width=10)
+        self.start_timer_minutes_entry = ttk.Entry(self, width=10)
+        self.start_timer_seconds_entry = ttk.Entry(self, width=10)
 
         #add labels to start label and entries to start pane 
         start_timer_pane.add(start_timer_label)
-        start_timer_pane.add(start_timer_hours_entry)
-        start_timer_pane.add(start_timer_minutes_entry)
-        start_timer_pane.add(start_timer_seconds_entry)
+        start_timer_pane.add(self.start_timer_hours_entry)
+        start_timer_pane.add(self.start_timer_minutes_entry)
+        start_timer_pane.add(self.start_timer_seconds_entry)
 
         #end timer
         end_timer_pane = tk.PanedWindow(self, orient="horizontal")
@@ -133,15 +133,15 @@ class IrrigationWindow(tk.Frame):
         end_timer_label = ttk.Label(self, text="Final")
 
         #end timer entries
-        end_timer_hours_entry = ttk.Entry(self, width=10)
-        end_timer_minutes_entry = ttk.Entry(self, width=10)
-        end_timer_seconds_entry = ttk.Entry(self, width=10)
+        self.end_timer_hours_entry = ttk.Entry(self, width=10)
+        self.end_timer_minutes_entry = ttk.Entry(self, width=10)
+        self.end_timer_seconds_entry = ttk.Entry(self, width=10)
 
         #add labels to end label and entries to end pane 
         end_timer_pane.add(end_timer_label)
-        end_timer_pane.add(end_timer_hours_entry)
-        end_timer_pane.add(end_timer_minutes_entry)
-        end_timer_pane.add(end_timer_seconds_entry)
+        end_timer_pane.add(self.end_timer_hours_entry)
+        end_timer_pane.add(self.end_timer_minutes_entry)
+        end_timer_pane.add(self.end_timer_seconds_entry)
 
         #add schedule timer to start timer pane 
         timer_pane.add(schedule)
@@ -159,5 +159,24 @@ class IrrigationWindow(tk.Frame):
 
     def set_irrigation_timer(self):
         #TODO irrigation system logic here
-        print("Timer set!!!!!!!!!!!!!!!!!!!!!!!1") #delete this line
+        
+        #this variables takes the entries text
+        
+        #taks entries
+        tank1 = self.tank1_level_entry.get()
+        tank2 = self.tank2_level_entry.get()
+        tank3 = self.tank3_level_entry.get()
 
+        #timer entries
+        start_hour = self.start_timer_hours_entry.get()
+        start_minute = self.start_timer_minutes_entry.get()
+        start_seconds = self.start_timer_seconds_entry.get()
+
+        end_hour = self.end_timer_hours_entry.get()
+        end_minutes = self.end_timer_minutes_entry.get()
+        end_seconds = self.end_timer_seconds_entry.get()
+
+        
+        print("Timer set!!!!!!!!!!!!!!!!!!!!!!!1") #delete this line
+        
+       
