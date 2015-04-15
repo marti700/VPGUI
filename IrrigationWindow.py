@@ -152,7 +152,12 @@ class IrrigationWindow(tk.Frame):
         buttons_pane = tk.PanedWindow(self, orient="horizontal")
         buttons_pane.grid(row=4, column=3, sticky="e")
         
-        set_button = tk.Button(self, text="Aplicar")
+        set_button = tk.Button(self, text="Aplicar", 
+                command = lambda: self.set_irrigation_timer())
 
         buttons_pane.add(set_button)
+
+    def set_irrigation_timer(self):
+        #TODO irrigation system logic here
+        print("Timer set!!!!!!!!!!!!!!!!!!!!!!!1") #delete this line
 
