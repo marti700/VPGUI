@@ -253,37 +253,37 @@ class IrrigationWindow(tk.Frame):
         #this variables takes the entries text
         
         #taks entries
-        tank1 = self.tank1_level_entry.get()
-        tank2 = self.tank2_level_entry.get()
-        tank3 = self.tank3_level_entry.get()
+        tank1 = int(self.tank1_level_entry.get())
+        tank2 = int(self.tank2_level_entry.get())
+        tank3 = int(self.tank3_level_entry.get())
 
         #timer 1 entries
-        start_hour = self.start_timer_hours_entry.get()
-        start_minute = self.start_timer_minutes_entry.get()
-        start_seconds = self.start_timer_seconds_entry.get()
+        start_hour = int(self.start_timer_hours_entry.get())
+        start_minute = int(self.start_timer_minutes_entry.get())
+        start_seconds = int(self.start_timer_seconds_entry.get())
 
-        end_hour = self.end_timer_hours_entry.get()
-        end_minutes = self.end_timer_minutes_entry.get()
-        end_seconds = self.end_timer_seconds_entry.get()
+        end_hour = int(self.end_timer_hours_entry.get())
+        end_minutes = int(self.end_timer_minutes_entry.get())
+        end_seconds = int(self.end_timer_seconds_entry.get())
 
         
         #timer 2 entries
-        start2_hour = self.start_timer2_hours_entry.get()
-        start2_minute = self.start_timer2_minutes_entry.get()
-        start2_seconds = self.start_timer2_seconds_entry.get()
+        start2_hour = int(self.start_timer2_hours_entry.get())
+        start2_minute = int(self.start_timer2_minutes_entry.get())
+        start2_seconds = int(self.start_timer2_seconds_entry.get())
 
-        end2_hour = self.end_timer2_hours_entry.get()
-        end2_minutes = self.end_timer2_minutes_entry.get()
-        end2_seconds = self.end_timer2_seconds_entry.get()
+        end2_hour = int(self.end_timer2_hours_entry.get())
+        end2_minutes = int(self.end_timer2_minutes_entry.get())
+        end2_seconds = int(self.end_timer2_seconds_entry.get())
 
-        #timer 2 entries
-        start3_hour = self.start_timer3_hours_entry.get()
-        start3_minute = self.start_timer3_minutes_entry.get()
-        start3_seconds = self.start_timer3_seconds_entry.get()
+        #timer 3 entries
+        start3_hour = int(self.start_timer3_hours_entry.get())
+        start3_minute = int(self.start_timer3_minutes_entry.get())
+        start3_seconds = int(self.start_timer3_seconds_entry.get())
 
-        end3_hour = self.end_timer3_hours_entry.get()
-        end3_minutes = self.end_timer3_minutes_entry.get()
-        end3_seconds = self.end_timer3_seconds_entry.get()
+        end3_hour = int(self.end_timer3_hours_entry.get())
+        end3_minutes = int(self.end_timer3_minutes_entry.get())
+        end3_seconds = int(self.end_timer3_seconds_entry.get())
 
         print("Timer set!!!!!!!!!!!!!!!!!!!!!!!1") #delete this line
         
