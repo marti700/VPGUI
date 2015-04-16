@@ -62,7 +62,7 @@ class SettingsWindow(tk.Frame):
         temp_spinbox_pane.add(self.min_temp_spinbox)
 
         #set temperature button 
-        set_temp_button = ttk.Button(self, text="Applicar")
+        set_temp_button = tk.Button(self, text="Applicar")
        
         #Add widgets to main pane (temp_adjust_pane)
         temp_adjust_pane.add(temp_labels_pane)
@@ -77,7 +77,7 @@ class SettingsWindow(tk.Frame):
         rie_adjust_pane.grid(row=2, column=4)
         rie_adjust_pane.place(x=560, y=100)
 
-        self.rie_sis_button = ttk.Button(self, text="Activar Sistema de Riego",
+        self.rie_sis_button = tk.Button(self, text="Sistema de Riego",
                 command = lambda: self.enable_disable_riego_system())
         #rie_ind_label = ttk.Label(self,text="act/desc")
 
@@ -89,7 +89,7 @@ class SettingsWindow(tk.Frame):
         lights_adjust_pane.grid(row=3, column=4)
         lights_adjust_pane.place(x=560, y=200)
 
-        self.lights_ind_button = ttk.Button(self, text="Activar Luces",
+        self.lights_ind_button = tk.Button(self,bg="red", text="Encender Luces",
                 command = lambda: self.enable_disable_lights())
 
         lights_adjust_pane.add(self.lights_ind_button)
@@ -99,7 +99,7 @@ class SettingsWindow(tk.Frame):
         fan_adjust_pane.grid(row=4, column=4)
         fan_adjust_pane.place(x=560, y=300)
 
-        self.fan_ind_button = ttk.Button(self, text="Activar ventiladores",
+        self.fan_ind_button = tk.Button(self, bg="red", text="Encender ventiladores",
                 command= lambda: self.enable_disable_fans())
 
         fan_adjust_pane.add(self.fan_ind_button)
@@ -155,11 +155,11 @@ class SettingsWindow(tk.Frame):
         if SettingsWindow.lights == False:
             SettingsWindow.lights = True
             self.enable_lights() #Activate the lights
-            self.lights_ind_button.config(text="Apagar Luces")
+            self.lights_ind_button.config(text="Apagar Luces", bg="green")
         else:
             SettingsWindow.lights = False
             self.disable_lights() #Deactivate the lights
-            self.lights_ind_button.config(text="Encender Luces")
+            self.lights_ind_button.config(text="Encender Luces", bg="red")
     
     def enable_lights(self):
         #TODO lights enabled logic here 
@@ -180,11 +180,11 @@ class SettingsWindow(tk.Frame):
         if SettingsWindow.fans == False:
             SettingsWindow.fans = True
             self.enable_fans() #Activate the fans 
-            self.fan_ind_button.config(text="Apagar Ventiladores")
+            self.fan_ind_button.config(text="Apagar Ventiladores", bg="green")
         else:
             SettingsWindow.fans = False
             self.disable_fans() #Deactivate the fans
-            self.fan_ind_button.config(text="Encender Ventiladores")
+            self.fan_ind_button.config(text="Encender Ventiladores", bg="red")
     
     def enable_fans(self):
         #TODO fans enabled logic here 
