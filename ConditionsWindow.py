@@ -90,7 +90,7 @@ class ConditionsWindow(tk.Frame):
         rie_info_pane.grid(row=2, column=4)
         rie_info_pane.place(x=560, y=100)
 
-        rie_sis_label = ttk.Label(self, text="Sistema de Riego:")
+        rie_sis_label = tk.Label(self, text="Sistema de Riego:")
         self.rie_ind_label = ttk.Label(self,text="act/desc")
 
         rie_info_pane.add(rie_sis_label)
@@ -101,7 +101,7 @@ class ConditionsWindow(tk.Frame):
         lights_info_pane.grid(row=3, column=4)
         lights_info_pane.place(x=560, y=200)
 
-        self.lights_ind_label = ttk.Label(self, text="Luces: act/desc")
+        self.lights_ind_label = tk.Label(self, text="Luces: act/desc")
 
         lights_info_pane.add(self.lights_ind_label)
 
@@ -110,7 +110,7 @@ class ConditionsWindow(tk.Frame):
         fan_info_pane.grid(row=4, column=4)
         fan_info_pane.place(x=560, y=300)
 
-        self.fan_ind_label = ttk.Label(self, text="Ventiladores: act/desc")
+        self.fan_ind_label = tk.Label(self, text="Ventiladores: act/desc")
 
         fan_info_pane.add(self.fan_ind_label)
 
@@ -119,7 +119,7 @@ class ConditionsWindow(tk.Frame):
         cur_info_pane.grid(row=5, column=4)
         cur_info_pane.place(x=560, y=400)
         
-        self.cur_ind_label = ttk.Label(self, text="Cortinas: act/desc")
+        self.cur_ind_label = tk.Label(self, text="Cortinas: act/desc")
 
         cur_info_pane.add(self.cur_ind_label)
 
@@ -205,12 +205,21 @@ class ConditionsWindow(tk.Frame):
         elif self.Hheight in range(33,51):
             self.hum_indicator.itemconfig(rect, fill="blue")
     
-    def set_lights_state(self, state):
-        self.lights_ind_label.config(text=state)
+    def set_lights_state(self, state, state_color=" "):
+        # if state_color == " ": 
+        #    state_color = self.cur_ind_label["bg"] 
+        
+        self.lights_ind_label.config(text=state, bg=state_color)
 
-    def set_fan_state(self, state):
-        self.fan_ind_label.config(text=state)
+    def set_fan_state(self, state, state_color=" "):
+         #if state_color == " ": 
+         #   state_color = self.cur_ind_label["bg"]
+        
+        self.fan_ind_label.config(text=state, bg=state_color)
 
-    def set_curtain_state(self, state):
-        self.cur_ind_label.config(text=state)
+    def set_curtain_state(self, state, state_color=" "):
+        #if  state_color == " ": 
+        #    state_color = self.cur_ind_label["bg"]
+        
+        self.cur_ind_label.config(text=state, bg=state_color)
 

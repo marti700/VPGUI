@@ -29,20 +29,27 @@ class Main(tk.Tk):
         #has_method_set_curtain_state = getattr(self.frames[cont], "set_courtain_state", None) #check if the window has an attribute "set_curtain_state"
         
         #this try expand block updates the Condition window labels with their apropiate values
+        #if an AttributeError exception is rised means that the current window don't have the called method 
+        #this code will work just with the Conditions Window by asking the Settings Window if the "Things" (lights, fans, etc)
+        #are active or deactive 
         try:
             if settings_window.SettingsWindow.lights == True:
-                self.frames[cont].set_lights_state("Luces Encendidas")
+                self.frames[cont].set_lights_state("Luces Encendidas", "green")
             
             elif settings_window.SettingsWindow.lights == False:
-                self.frames[cont].set_lights_state("Luces apagadas")
+                self.frames[cont].set_lights_state("Luces apagadas", "red")
             
             if settings_window.SettingsWindow.fans == True:
-                self.frames[cont].set_fan_state("Ventiladores Encendidos")
+                self.frames[cont].set_fan_state("Ventiladores Encendidos", "green")
             
             elif settings_window.SettingsWindow.fans == False:
-                self.frames[cont].set_fan_state("Ventiladores Apagados")
+                self.frames[cont].set_fan_state("Ventiladores Apagados", "red")
             
-            self.frames[cont].set_curtain_state("Cortinas Activas " + settings_window.SettingsWindow.cur_level)
+            if settings_window.SettingsWindow.cur_level == "None" or settings_window.SettingsWindow.cur_level == "Desactivar":
+                self.frames[cont].set_curtain_state(str("Cortinas Activas " + settings_window.SettingsWindow.cur_level), "red")
+            
+            elif settings_window.SettingsWindow.cur_level != "None":
+                self.frames[cont].set_curtain_state(str("Cortinas Activas " + settings_window.SettingsWindow.cur_level), "green")
             
         except AttributeError:
             pass
