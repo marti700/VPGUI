@@ -22,7 +22,30 @@ class Main(tk.Tk):
         self.show_frame(main_window.MainWindow)
 
     def show_frame(self, cont):
+       
+        #has_method_set_lights_state = getattr(self.frames[cont], "set_lights_state", None) #check if the window has an attribute "set_lights_state"
+        #has_method_set_fan_state = getattr(self.frames[cont], "set_fan_state", None) #check if the window has an attibute "set_fan_state"
+        #has_method_set_curtain_state = getattr(self.frames[cont], "set_courtain_state", None) #check if the window has an attribute "set_curtain_state"
         
+        #this try expand block updates the Condition window labels with their apropiate values
+        try:
+            if settings_window.SettingsWindow.lights == True:
+                self.frames[cont].set_lights_state("Luces Encendidas")
+            
+            elif settings_window.SettingsWindow.lights == False:
+                self.frames[cont].set_lights_state("Luces apagadas")
+            
+            if settings_window.SettingsWindow.fans == True:
+                self.frames[cont].set_fan_state("Ventiladores Encendidos")
+            
+            elif settings_window.SettingsWindow.fans == False:
+                self.frames[cont].set_fan_state("Ventiladores Apagados")
+            
+            self.frames[cont].set_curtain_state("Cortinas Activas " + settings_window.SettingsWindow.cur_level)
+            
+        except AttributeError:
+            pass
+
         frame = self.frames[cont]
         frame.tkraise()
 

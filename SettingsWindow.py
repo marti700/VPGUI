@@ -8,7 +8,8 @@ class SettingsWindow(tk.Frame):
     riego = False
     lights = False
     fans = False
-    courtains  = False
+    courtains = False
+    cur_level = "None"
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
@@ -197,16 +198,23 @@ class SettingsWindow(tk.Frame):
     def enable_disable_curtains(self):
         if self.cur_ind_combobox.get() == "Nivel 1":
             print("Nivel 1 Activo")
+            SettingsWindow.cur_level = "Nivel 1"
             #TODO level 1 curtain Activation logic here
+        
         elif self.cur_ind_combobox.get() == "Nivel 2":
             print("Nivel 2 Activo")
+            SettingsWindow.cur_level = "Nivel 2"
             #TODO level 2 curtain Activation logic here
+        
         elif self.cur_ind_combobox.get() == "Nivel 3":
             print("Nivel 3 Activo")
+            SettingsWindow.cur_level = "Nivel 3"
             #TODO level 3 curtain Activation logic here
+        
         elif self.cur_ind_combobox.get() == "Desactivar":
             print("Cortinas Desactiadas")
             #TODO curtain Deactivation logic here
+        
         else:
             print("Unknow option")
        
