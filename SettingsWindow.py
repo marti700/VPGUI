@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 import MainWindow as main_window
+import IrrigationWindow as irrigation_system
 
 TITLE_FONT = ("ARIAL", 14)
 
@@ -78,8 +79,8 @@ class SettingsWindow(tk.Frame):
         rie_adjust_pane.grid(row=2, column=4)
         rie_adjust_pane.place(x=560, y=100)
 
-        self.rie_sis_button = tk.Button(self, text="Sistema de Riego",
-                command = lambda: self.enable_disable_riego_system())
+        self.rie_sis_button = ttk.Button(self, text="Activar Sistema de Riego",
+                command = lambda: controller.show_frame(irrigation_system.IrrigationWindow))
         #rie_ind_label = ttk.Label(self,text="act/desc")
 
         rie_adjust_pane.add(self.rie_sis_button)
