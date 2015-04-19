@@ -3,6 +3,7 @@ import MainWindow as main_window
 import ConditionsWindow as conditions_window
 import SettingsWindow as settings_window
 import IrrigationWindow as irrigation_window
+import GraphicWindow as graph_window
 
 class Main(tk.Tk):
     
@@ -15,7 +16,7 @@ class Main(tk.Tk):
 
         self.frames = {}
         
-        for Fr in (main_window.MainWindow, conditions_window.ConditionsWindow, settings_window.SettingsWindow, irrigation_window.IrrigationWindow):
+        for Fr in (main_window.MainWindow, conditions_window.ConditionsWindow, settings_window.SettingsWindow, irrigation_window.IrrigationWindow, graph_window.GraphicWindow):
             frame = Fr(container, self)
             self.frames[Fr] = frame  # adds the frame to self.frames
             frame.grid(row=0, column=0, sticky="nsew")
@@ -24,10 +25,6 @@ class Main(tk.Tk):
 
     def show_frame(self, cont):
        
-        #has_method_set_lights_state = getattr(self.frames[cont], "set_lights_state", None) #check if the window has an attribute "set_lights_state"
-        #has_method_set_fan_state = getattr(self.frames[cont], "set_fan_state", None) #check if the window has an attibute "set_fan_state"
-        #has_method_set_curtain_state = getattr(self.frames[cont], "set_courtain_state", None) #check if the window has an attribute "set_curtain_state"
-        
         #this try expand block updates the Condition window labels with their apropiate values
         #if an AttributeError exception is rised means that the current window don't have the called method 
         #this code will work just with the Conditions Window by asking the Settings Window if the "Things" (lights, fans, etc)
@@ -51,6 +48,13 @@ class Main(tk.Tk):
             elif settings_window.SettingsWindow.cur_level != "None":
                 self.frames[cont].set_curtain_state(str("Cortinas Activas " + settings_window.SettingsWindow.cur_level), "green")
             
+        except AttributeError:
+            pass
+
+        try:
+            #refresh the tendency graph
+            #for some reason if I put this line in the previous try block the graph don't show up
+            self.frames[cont].draw_graph(graph_window.GraphicWindow.temperature, graph_window.GraphicWindow.time)
         except AttributeError:
             pass
 
